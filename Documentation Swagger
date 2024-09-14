@@ -1,0 +1,447 @@
+openapi: 3.0.0
+info:
+  title: API de Inventario, Usuarios y Ventas
+  description: |-
+    Documentacion de las APIs para el proyecto de Digital Nao
+  version: 1.0.11
+
+
+paths:
+  /users:
+    get:
+      summary: Obtener todos los usuarios
+      description: Obtiene la lista de todos los usuarios registrados.
+      responses:
+        '200':
+          description: Lista de usuarios.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+    post:
+      summary: Crear un nuevo usuario
+      description: Crea un nuevo usuario.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserDto'
+      responses:
+        '201':
+          description: Usuario creado.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Datos incorrectos.
+  /users/{id}:
+    get:
+      summary: Obtener un usuario por ID
+      description: Obtiene los detalles de un usuario específico.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del usuario
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Usuario encontrado.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: Usuario no encontrado.
+    put:
+      summary: Actualizar un usuario
+      description: Actualiza los detalles de un usuario existente.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del usuario
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserDto'
+      responses:
+        '200':
+          description: Usuario actualizado.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: Usuario no encontrado.
+    delete:
+      summary: Eliminar un usuario
+      description: Elimina un usuario existente.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del usuario
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Usuario eliminado.
+        '404':
+          description: Usuario no encontrado.
+
+  /sales:
+    get:
+      summary: Obtener todas las ventas
+      description: Obtiene la lista de todas las ventas realizadas.
+      responses:
+        '200':
+          description: Lista de ventas.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Sale'
+    post:
+      summary: Registrar una nueva venta
+      description: Registra una nueva venta en el sistema.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSaleDto'
+      responses:
+        '201':
+          description: Venta registrada.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sale'
+        '400':
+          description: Datos incorrectos.
+  /sales/{id}:
+    get:
+      summary: Obtener una venta por ID
+      description: Obtiene los detalles de una venta específica.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID de la venta
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Venta encontrada.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sale'
+        '404':
+          description: Venta no encontrada.
+    put:
+      summary: Actualizar una venta
+      description: Actualiza los detalles de una venta existente.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID de la venta
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateSaleDto'
+      responses:
+        '200':
+          description: Venta actualizada.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sale'
+        '404':
+          description: Venta no encontrada.
+    delete:
+      summary: Eliminar una venta
+      description: Elimina una venta existente.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID de la venta
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Venta eliminada.
+        '404':
+          description: Venta no encontrada.
+
+  /products:
+    get:
+      summary: Obtener todos los productos
+      description: Obtiene la lista de todos los productos disponibles en el inventario.
+      responses:
+        '200':
+          description: Lista de productos.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+    post:
+      summary: Crear un nuevo producto
+      description: Crea un nuevo producto en el inventario.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateProductDto'
+      responses:
+        '201':
+          description: Producto creado.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        '400':
+          description: Datos incorrectos.
+  /products/{id}:
+    get:
+      summary: Obtener un producto por ID
+      description: Obtiene los detalles de un producto específico en el inventario.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del producto
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Producto encontrado.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        '404':
+          description: Producto no encontrado.
+    put:
+      summary: Actualizar un producto
+      description: Actualiza los detalles de un producto existente en el inventario.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del producto
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateProductDto'
+      responses:
+        '200':
+          description: Producto actualizado.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        '404':
+          description: Producto no encontrado.
+    delete:
+      summary: Eliminar un producto
+      description: Elimina un producto existente del inventario.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del producto
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Producto eliminado.
+        '404':
+          description: Producto no encontrado.
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: "Juan Pérez"
+          description: Nombre del usuario
+        email:
+          type: string
+          example: "juan.perez@example.com"
+          description: Correo electrónico del usuario
+    CreateUserDto:
+      type: object
+      required:
+        - name
+        - email
+      properties:
+        name:
+          type: string
+          example: "Juan Pérez"
+        email:
+          type: string
+          example: "juan.perez@example.com"
+    UpdateUserDto:
+      type: object
+      properties:
+        name:
+          type: string
+          example: "Juan Pérez Actualizado"
+        email:
+          type: string
+          example: "juan.perez.actualizado@example.com"
+
+    Sale:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        customerName:
+          type: string
+          example: "María García"
+          description: Nombre del cliente
+        product:
+          type: string
+          example: "Televisor 50 pulgadas"
+          description: Producto vendido
+        totalAmount:
+          type: number
+          format: float
+          example: 799.99
+          description: Monto total de la venta
+        saleDate:
+          type: string
+          format: date
+          example: "2024-09-10"
+          description: Fecha de la venta
+    CreateSaleDto:
+      type: object
+      required:
+        - customerName
+        - product
+        - totalAmount
+        - saleDate
+      properties:
+        customerName:
+          type: string
+          example: "María García"
+        product:
+          type: string
+          example: "Televisor 50 pulgadas"
+        totalAmount:
+          type: number
+          format: float
+          example: 799.99
+        saleDate:
+          type: string
+          format: date
+          example: "2024-09-10"
+    UpdateSaleDto:
+      type: object
+      properties:
+        customerName:
+          type: string
+          example: "María García Actualizada"
+        product:
+          type: string
+          example: "Televisor 55 pulgadas"
+        totalAmount:
+          type: number
+          format: float
+          example: 899.99
+        saleDate:
+          type: string
+          format: date
+          example: "2024-09-11"
+
+    Product:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: "Laptop"
+          description: Nombre del producto
+        description:
+          type: string
+          example: "Laptop Dell XPS"
+          description: Descripción del producto
+        quantity:
+          type: integer
+          example: 10
+          description: Cantidad disponible del producto
+        price:
+          type: number
+          format: float
+          example: 999.99
+          description: Precio del producto
+    CreateProductDto:
+      type: object
+      required:
+        - name
+        - description
+        - quantity
+        - price
+      properties:
+        name:
+          type: string
+          example: "Laptop"
+        description:
+          type: string
+          example: "Laptop Dell XPS"
+        quantity:
+          type: integer
+          example: 10
+        price:
+          type: number
+          format: float
+          example: 999.99
+    UpdateProductDto:
+      type: object
+      properties:
+        name:
+          type: string
+          example: "Laptop actualizada"
+        description:
+          type: string
+          example: "Laptop Dell XPS actualizada"
+        quantity:
+          type: integer
+          example: 8
+        price:
+          type: number
+          format: float
+          example: 1099.99
