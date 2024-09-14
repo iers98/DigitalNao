@@ -1,6 +1,8 @@
 # DigitalNao
 DigitalNao Sprints
 
+El proyecto CRUD esta en la branch MASTER
+
 El proposito de este repositorio es alamacenar todas las actividade requeridas en el curso de FullStack Developer
 
 Link para RoadMap en Miro:
