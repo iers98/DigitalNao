@@ -21,7 +21,7 @@ export class InventoryController {
 
   @ApiOperation({ summary: 'Obtener todos los productos' })
   @ApiResponse({ status: 200, description: 'Lista de productos.', type: [Product] })
-  @Get()
+  @Get('/all')
   findAll() {
     return this.inventoryService.findAll();
   }

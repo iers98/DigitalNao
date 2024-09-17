@@ -21,7 +21,7 @@ export class SaleController {
 
   @ApiOperation({ summary: 'Obtener todas las ventas' })
   @ApiResponse({ status: 200, description: 'Lista de ventas.', type: [Sale] })
-  @Get()
+  @Get('/all')
   findAll() {
     return this.saleService.findAll();
   }
