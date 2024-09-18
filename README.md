@@ -1,4 +1,4 @@
-# lINK DE PROYECTO EN LA NUBE: charismatic-rejoicing-production.up.railway.app
+# LINK DE PROYECTO EN LA NUBE: charismatic-rejoicing-production.up.railway.app
 
 # DigitalNao
 DigitalNao Sprints
