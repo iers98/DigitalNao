@@ -8,15 +8,16 @@ import { SaleModule } from './sale/sale.module';
 import { InventoryModule } from './inventory/inventory.module';
 import { Product } from './inventory/product.entity';
 import { Sale } from './sale/sale.entity';
+import { DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME } from './config';
 
 @Module({
   imports: [TypeOrmModule.forRoot({
     type: 'mysql',
-    host: 'localhost',
-    port: 3306,
-    username: 'root',
-    password: 'admin',
-    database: 'nestdb',
+    host: DB_HOST,
+    port: Number(DB_PORT),
+    username: DB_USER,
+    password: DB_PASSWORD,
+    database: DB_NAME,
     entities: [User,Product, Sale],
     synchronize: true, // solo para desarrollo, no en producción
   }) ,
