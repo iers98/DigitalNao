@@ -1,6 +1,13 @@
 # LINK DE PROYECTO EN LA NUBE: 
 sprint3-ivan-rodriguez.up.railway.app
 
+#Generar token
+http://localhost:3000/protected/token
+
+Response:
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ikl2YW4gRW5yaXF1ZSIsInBhc3N3b3JkIjoicGFzc3dvcmQxMjMiLCJpYXQiOjE3MjY3MTIwMjcsImV4cCI6MTcyNjcxNTYyN30.yXgB_JBuYVmp0K9kax_lM7-vGDPzLMLJGQiU-HJqCk0"
+}
 # DigitalNao
 DigitalNao Sprints
 
