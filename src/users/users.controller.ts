@@ -1,9 +1,11 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, Put, UseGuards } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UsersService } from './users.service';
 import { User } from './user.entity';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { AuthGuard } from '@nestjs/passport';
+
 
 @ApiTags('Usuarios')
 @Controller('users')
@@ -29,6 +31,8 @@ export class UsersController {
     @ApiOperation({ summary: 'Obtener un usuario por ID' })
     @ApiResponse({ status: 200, description: 'Usuario encontrado.', type: User })
     @ApiResponse({ status: 404, description: 'Usuario no encontrado.' })
+    @UseGuards(AuthGuard('jwt'))
+    @ApiBearerAuth('access-token')
     @Get(':id')
     findOne(@Param('id', ParseIntPipe) id: number) {
       return this.userService.findOne(+id);
@@ -37,6 +41,8 @@ export class UsersController {
     @ApiOperation({ summary: 'Eliminar un usuario' })
     @ApiResponse({ status: 200, description: 'Usuario eliminado.' })
     @ApiResponse({ status: 404, description: 'Usuario no encontrado.' })
+    @UseGuards(AuthGuard('jwt'))
+    @ApiBearerAuth('access-token')
     @Delete(':id')
     remove(@Param('id', ParseIntPipe) id: number) {
       return this.userService.remove(+id);
@@ -45,6 +51,8 @@ export class UsersController {
     @ApiOperation({ summary: 'Actualizar un usuario' })
     @ApiResponse({ status: 200, description: 'Usuario actualizado.', type: User })
     @ApiResponse({ status: 404, description: 'Usuario no encontrado.' })
+    @UseGuards(AuthGuard('jwt'))
+    @ApiBearerAuth('access-token')
     @Patch(':id')
     update(@Param('id',ParseIntPipe ) id: number, @Body() updateUserDto: UpdateUserDto) {
       return this.userService.update(+id, updateUserDto);

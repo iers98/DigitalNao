@@ -11,6 +11,10 @@ async function bootstrap() {
   .setTitle('API de Inventario, Usuarios y Ventas')
   .setDescription('API para gestionar inventario de productos, usuarios y ventas')
   .setVersion('1.0')
+  .addBearerAuth( 
+    { type: 'http', scheme: 'bearer', bearerFormat: 'JWT', in: 'header' },
+    'access-token', 
+  )
   .build();
 
   const document = SwaggerModule.createDocument(app, config);

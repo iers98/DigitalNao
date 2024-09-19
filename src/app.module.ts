@@ -9,6 +9,7 @@ import { InventoryModule } from './inventory/inventory.module';
 import { Product } from './inventory/product.entity';
 import { Sale } from './sale/sale.entity';
 import { DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME } from './config';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [TypeOrmModule.forRoot({
@@ -23,7 +24,8 @@ import { DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME } from './config';
   }) ,
     UsersModule,
     SaleModule,
-    InventoryModule],
+    InventoryModule,
+    AuthModule],
   controllers: [AppController],
   providers: [AppService],
 })
